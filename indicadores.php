@@ -1,4 +1,11 @@
 <?php
+
+/* LINK MAPA 
+https://geobrainstorms.wordpress.com/2013/05/23/mapa-de-calor-com-o-google-maps/ 
+http://stackoverflow.com/questions/21558845/chart-js-and-php
+http://websocialdev.com/graficos-chart-js-introducao/
+*/
+
 include_once('navbar.html');
 require_once('requisicao.php');
 
@@ -17,7 +24,7 @@ foreach ($itens as $r) {
 <html>
   <head>
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-    <script type='text/javascript' src='graphics/graph1.js'></script>
+ 
     <script type='text/javascript' src='graphics/graph2.js'></script>
   </head>
   <body>
@@ -45,7 +52,7 @@ foreach ($itens as $r) {
     <div class='col-md-9'>
       <div class='panel-group'>
       <div class='panel panel-primary'>
-        <div id='barchart_material' style='width: 600px; height: 300px;'></div>
+        <div id='regions_div' style='width: 600px; height: 300px;'></div>
       </div>
       </div>
     </div>
