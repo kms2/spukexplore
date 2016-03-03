@@ -1,7 +1,33 @@
 <!DOCTYPE html>
+<style>
+
+.navbar-custom {
+    background-color:#337ab7;
+    color:#2ECD71;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:#5C8EB9 ;
+}
+
+.navbar-custom li a:hover{
+  color: #337ab7;
+  background-color:#2ECD71;
+}
+.navbar-custom .navbar-brand {
+    color:#ffffff;
+}
+
+</style>
+
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>SPUK</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -10,7 +36,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-custom">
   <div class="col-md-2"></div>
   <div class="col-md-8">
   <div class="container-fluid">
@@ -18,10 +44,8 @@
       <a class="navbar-brand" href="#">SPUK</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="index.php">Home</a></li>
+      <li><a href="index.php">Home</a></li>
       <li><a href="indicadores.php">Indicadores</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
     </ul>
   </div>
 </div>

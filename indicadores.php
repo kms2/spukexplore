@@ -8,10 +8,18 @@ http://websocialdev.com/graficos-chart-js-introducao/
 
 include_once('navbar.html');
 require_once('requisicao.php');
+require_once('lib/querys.php');
+  
+$resultado = strings();
+
+$string = $resultado->strings;
 
 $names = null;
+foreach ($string as $s){
+  $queryDiosease = $s->queryDiosease;
+}
 
-$result = query();
+$result = query($queryDiosease);
 $json = json_decode($result);
 
 $itens = $json->results->bindings;

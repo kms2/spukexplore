@@ -1,6 +1,6 @@
 <?php
 
-function query(){
+function query($queryString){
     $prefix =   '{
         "prefix": [ 
             {"nome":"dbo", "link":"http://dbpedia.org/ontology/"}, 
@@ -15,10 +15,9 @@ function query(){
        $prefixString .= " PREFIX " . $prefixs->nome . ": <". $prefixs->link .">";
     }
 
-    $parameters = urlencode($prefixString . " select ?x ?name ?title where {?x rdf:type dbo:Disease . ?x dbo:icd10 ?name . ?x dc:title ?title}");
+    $parameters = urlencode($prefixString . $queryString);
     $format= "json";
-
-   $dados = getresult($parameters, $format);
+    $dados = getresult($parameters, $format);
 
     return $dados;
 }
