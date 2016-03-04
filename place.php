@@ -36,9 +36,6 @@ $totacasos = $totaldiagnosticados + $totalcurados;
 
 ?>
 <head>
-<script type='text/javascript' src="lib/Chart.min.js"></script>
-<script type='text/javascript' src="graphics/graph1.js"></script>
-<script type='text/javascript' src="lib/jquery-1.11.1.min.js"></script>
 <style>
 .checkbox {
 	float: left;

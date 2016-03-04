@@ -18,9 +18,23 @@ function post() {
 			window.location.reload();
 			
 		}
-
-
 }
+
+$( document ).ready(function() {
+    $("#ontologia").hide();
+    $("#fechar").hide();
+    $("#visualizar").click(function() {
+ 		 $("#ontologia").show();
+ 		 $("#visualizar").hide();
+ 		 $("#fechar").show();
+	});
+
+	$("#fechar").click(function() {
+ 		 $("#ontologia").hide();
+ 		 $("#visualizar").show();
+ 		 $("#fechar").hide();
+	});
+});
 
             
        

@@ -34,12 +34,7 @@ require_once('lib/querys.php');
 
 ?>
 <html>
-  <head>
-    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
- 
-    <script type='text/javascript' src='graphics/graph2.js'></script>
-        <script type='text/javascript' src='graphics/graph1.js'></script>
-  </head>
+  
   <body>
   <div class="container">
     <div class="row">
