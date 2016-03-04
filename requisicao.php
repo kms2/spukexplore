@@ -4,7 +4,8 @@ function query($queryString){
     $prefix =   '{
         "prefix": [ 
             {"nome":"dbo", "link":"http://dbpedia.org/ontology/"}, 
-            {"nome":"dc", "link":"http://purl.org/dc/terms/"}
+            {"nome":"dc", "link":"http://purl.org/dc/terms/"},
+            {"nome": "ns0", "link": "http://www.governoaberto.sp.gov.br/ontologia/spuk#"}
         ]
     }';
     $json = json_decode($prefix);
@@ -27,6 +28,31 @@ function getResult($parameters, $format){
     $result = file_get_contents('http://webproj04.cin.ufpe.br/sparql/?query='. $parameters . "&format=" . $format);
    
     return $result;
+}
+
+function getGeoNames($nameLocal){
+
+    $localidade = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='. urlencode($nameLocal) .'&key=AIzaSyB5Q7dfBggEUonloDiWGl8wCpM1s3PoSiY');
+    $json = json_decode($localidade);
+    //print_r($json);
+    $itens = $json->results;
+    //print_r($itens );
+    foreach ($itens as $key ) {
+       $lat = $key->geometry->location->lat;
+       $long = $key->geometry->location->lng;
+       $lat_long[] = array("lat" => $lat, "long" => $long);
+    }
+   
+  
+    return $lat_long;
+}
+
+
+function getPlaceInfo($namePlace){
+    $queryString = "select distinct ?ibge ?area ?curados ?diagnosticados ?valor ?ano where {?x rdf:type ns0:Place . ?x ns0:ibge6 ?ibge . ?y rdf:type ns0:IndicadorCuradoDiagnosticado  . ?x dc:title '". $namePlace ."' . ?y ns0:refersToPlace ?x . 
+?x ns0:areaTotalKm ?area . ?y ns0:quantidadeCasosCurados ?curados . ?y ns0:quantidadeCasosDiagnosticados ?diagnosticados . ?y ns0:valorCalculado ?valor . ?y dc:temporal ?ano} ORDER BY ?valor";
+
+   return query($queryString);
 }
 
 ?>

@@ -10,23 +10,27 @@ include_once('navbar.html');
 require_once('requisicao.php');
 require_once('lib/querys.php');
   
-$resultado = strings();
 
-$string = $resultado->strings;
+  function getValor($nameQuery){
+      $resultado = strings();
+      $string = $resultado->strings;
 
-$names = null;
-foreach ($string as $s){
-  $queryDiosease = $s->queryDiosease;
-}
+      $names = null;
+      foreach ($string as $s){
+        $query = $s->$nameQuery;
+      }
 
-$result = query($queryDiosease);
-$json = json_decode($result);
+      $resultQuery = query($query);
+      return json_decode($resultQuery);
+  }
 
-$itens = $json->results->bindings;
-foreach ($itens as $r) {
-  $names[] = $r->title->value;
- 
-}
+  $json = getValor('queryDiosease');
+  $itens = $json->results->bindings;
+  foreach ($itens as $r) {
+    $names[] = $r->title->value;
+   
+  } 
+
 
 ?>
 <html>
@@ -34,41 +38,88 @@ foreach ($itens as $r) {
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
  
     <script type='text/javascript' src='graphics/graph2.js'></script>
+        <script type='text/javascript' src='graphics/graph1.js'></script>
   </head>
   <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-9">
+      
+      <!-- <div class="col-md-12">
         <div class="form-group">
           <form action="post">
-            <label for="sel1">Doenças:</label>
+            <label for="doenca">Doenças:</label>
             <select class="form-control" id="doenca">
+              <option>----- SELECIONE -----</option>
             <?php 
-              for ($i = 0; $i < count($names); $i++) {
-                echo  '<option> '. $names[$i] .'</option>';
-              } 
+           //   for ($i = 0; $i < count($names); $i++) {
+             //   echo  '<option> '. $names[$i] .'</option>';
+             // } 
             ?> 
             </select>
         </form>
         </div>
-      </div>
-  <div class="col-md-1"></div>
-    </div>
+      </div>-->
+  
+    </div> 
+
+<?php
+
+
+  $json = getValor('queryPlace');
+
+  $itens = $json->results->bindings;
+
+  foreach ($itens as $r) {
+    $places[] = $r->place->value;
+   
+  }
+  asort($places);
+?>
+
+
+<style>
+.places{
+  float:left;
+  width: 220px;
+}
+
+footer{
+      background-color: #B6BEC5;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+</style>
+
   <div class="row">
-  <div class="col-md-1"></div>
-    <div class='col-md-9'>
-      <div class='panel-group'>
-      <div class='panel panel-primary'>
-        <div id='regions_div' style='width: 600px; height: 300px;'></div>
+
+    <div class='col-md-12'>
+
+      <div class="panel-group">
+        <div class="panel panel-info">
+          <div class="panel-heading"><center><p style="text-transform: uppercase;margin-bottom: 0";>Escolha uma Cidade</p></center></div>
+        </div>
       </div>
-      </div>
+  
+        <ul>
+        
+            <?php 
+
+            foreach($places as $p){
+              echo  '<li class="places"> <a href="place.php?name='. $p . '"> '. $p .'</a></li>';
+            } 
+              
+            ?> 
+
+        </ul>
     </div>
-  <div class="col-md-1"></div>
   </div>
 
 </div>
  </body>
+<footer><center><p style="padding-top: 14px;">Todos os direitos reservados </p></center></footer>
 </html>
 
 
