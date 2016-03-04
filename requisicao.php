@@ -49,10 +49,17 @@ function getGeoNames($nameLocal){
 
 
 function getPlaceInfo($namePlace){
-    $queryString = "select distinct ?ibge ?area ?curados ?diagnosticados ?valor ?ano where {?x rdf:type ns0:Place . ?x ns0:ibge6 ?ibge . ?y rdf:type ns0:IndicadorCuradoDiagnosticado  . ?x dc:title '". $namePlace ."' . ?y ns0:refersToPlace ?x . 
-?x ns0:areaTotalKm ?area . ?y ns0:quantidadeCasosCurados ?curados . ?y ns0:quantidadeCasosDiagnosticados ?diagnosticados . ?y ns0:valorCalculado ?valor . ?y dc:temporal ?ano} ORDER BY ?valor";
+    $queryString = "select distinct ?ibge ?area ?curados ?diagnosticados ?valor ?ano ?title  where {?x rdf:type ns0:Place . ?x ns0:ibge6 ?ibge . ?y rdf:type ns0:IndicadorCuradoDiagnosticado  . ?x dc:title '".$namePlace."' . ?y ns0:refersToPlace ?x . ?y ns0:refersToDisease ?doenca .  ?x ns0:areaTotalKm ?area . ?y ns0:quantidadeCasosCurados ?curados . ?y ns0:quantidadeCasosDiagnosticados ?diagnosticados . ?y ns0:valorCalculado ?valor . ?y dc:temporal ?ano . ?z rdf:type dbo:Disease . ?y ns0:refersToDisease ?z .  ?z dc:title ?title  } ORDER BY ?valor";
 
    return query($queryString);
 }
+
+
+function getPlaceInfoForDiasease($namePlace, $nameDisease) {
+    $queryString = "select distinct ?ibge ?area ?curados ?diagnosticados ?valor ?ano  where {?x rdf:type ns0:Place . ?x ns0:ibge6 ?ibge . ?y rdf:type ns0:IndicadorCuradoDiagnosticado  . ?x dc:title '".$namePlace."' . ?y ns0:refersToPlace ?x . ?y ns0:refersToDisease ?doenca .  ?x ns0:areaTotalKm ?area . ?y ns0:quantidadeCasosCurados ?curados . ?y ns0:quantidadeCasosDiagnosticados ?diagnosticados . ?y ns0:valorCalculado ?valor . ?y dc:temporal ?ano . ?z rdf:type dbo:Disease . ?y ns0:refersToDisease ?z .  ?z dc:title '". $nameDisease ."' } ORDER BY ?valor";
+   // print_r($queryString);
+   return query($queryString);
+}
+
 
 ?>

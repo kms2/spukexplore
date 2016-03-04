@@ -1,14 +1,26 @@
-$( document ).ready(function() {
-  // Handler for .ready() called.
-  $("#doenca").change(function() {
-  	if($("#doenca").val() == "Tuberculose A16.9" ){
-  		console.log("estou aqui");
-  		alert("Funcionou");
-  	}
-    doenca = $("#doeca").val();
+
+function post() {
+	
+	$("#result").html("<center><img style='width: auto; height: auto;' src='img/loading.gif' /></center>");
+	$("#graficosGerais").hide();
+	name = $('#doenca').val();
+	place = $('#place').val();
+
+	if ((name !== null && name !== undefined && name !== "") && (place !== null && place !== undefined)) {
+
+		$.post("maps.php", { 'doenca': name, 'place': place}, function(data){
+			$("#result").html(data);
+			
+		}); 
+		
+		} else  {
+			//alert('teste');
+			window.location.reload();
+			
+		}
+
+
+}
+
+            
        
-      
-  });
-
-
-});
