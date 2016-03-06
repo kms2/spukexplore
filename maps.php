@@ -61,6 +61,33 @@ html, body {
 #result{
 	margin-top: 35%;
 }
+ul {
+    list-style: none;
+}
+ul li {
+    display: block;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    padding: 2px 8px 2px 28px;
+    font-size: 14px;
+    cursor: default;
+    float:left;
+    -webkit-transition: background-color 200ms ease-in-out;
+    -moz-transition: background-color 200ms ease-in-out;
+    -o-transition: background-color 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out;
+}
+li span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 75%;
+    border-radius: 5px;
+}
 </style>
 <html>
 <body>
@@ -144,12 +171,10 @@ html, body {
     datasets: [
         {
             label: "Curados",
-            fillColor: "#337ab7",
-            strokeColor: "#337ab7",
-            pointColor: "#337ab7",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "#337ab7",
+            fillColor: "rgba(117,157,193,1)",
+            strokeColor: "rgba(117,157,193,1)",
+            highlightFill: "rgba(117,157,193,0.8)",
+            highlightStroke: "rgba(117,157,193,0.8)",
             data: [
             <?php 
             	foreach($curadosDisease as $c){
@@ -160,12 +185,10 @@ html, body {
         },
         {
             label: "Diagnosticados",
-            fillColor: "#FF3333",
-            strokeColor: "#FF3333",
-            pointColor: "#FF3333",
-            pointStrokeColor: "#fff",
-            pointHighlightFill: "#fff",
-            pointHighlightStroke: "#FF3333",
+            fillColor: "rgba(247,70,74,1)",
+            strokeColor: "rgba(247,70,74,1)",
+            highlightFill: "rgba(247,70,74,0.8)",
+            highlightStroke: "rgba(247,70,74,0.8)",
             data: [
             <?php 
             	foreach($diagnosticadosDisease as $d){
@@ -179,24 +202,29 @@ html, body {
 var dataPie = [
     {
         value: <?php echo $totalcuradosDisease; ?> ,
-        color:"#337ab7",
-        highlight: "#497FAD",
+        color:"rgba(117,157,193,1)",
+        highlight: "rgba(117,157,193,0.8)",
         label: "Curados"
     },
     {
         value: <?php echo $totaldiagnosticadosDisease; ?> ,
         color: "#F7464A",
-        highlight: "#FF5A5E",
+        highlight: "rgba(247,70,74,0.8)",
         label: "Diagnosticados"
     }
 ];                  
     
         var ctx = document.getElementById("GraficoBarra").getContext("2d");
         var BarChart = new Chart(ctx).Bar(data, options);
+        var legendBar = document.createElement('div');
+		legendBar.innerHTML = BarChart.generateLegend();
+		document.getElementById('GraficoBarra').parentNode.parentNode.appendChild(legendBar.firstChild);
 
         var ctx1 = document.getElementById("GraficoPie").getContext("2d");
    		var myPie = new Chart(ctx1).Pie(dataPie,options);
-  		
+  		var legendPie = document.createElement('div');
+		legendPie.innerHTML = myPie.generateLegend();
+		document.getElementById('GraficoPie').parentNode.parentNode.appendChild(legendPie.firstChild);
 
         
                
