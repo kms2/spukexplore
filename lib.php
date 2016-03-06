@@ -7,4 +7,17 @@ function limpaURI($uri){
   return $string;
 }
 
+ function getValor($nameQuery){
+      $resultado = strings();
+      $string = $resultado->strings;
+
+      $names = null;
+      foreach ($string as $s){
+        $query = $s->$nameQuery;
+      }
+
+      $resultQuery = query($query);
+      return json_decode($resultQuery);
+  }
+
 ?>

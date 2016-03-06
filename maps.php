@@ -4,24 +4,6 @@ require_once('requisicao.php');
 require_once('lib/querys.php');
 require_once('lib.php');
 
-/*$resultado = strings();
-
-$string = $resultado->strings;
-
-$names = null;
-foreach ($string as $s){
-  $queryLocalidade = $s->queryLocalidade;
-}
-//print_r($queryLocalidade);
-$localidade = query($queryLocalidade);
-$json = json_decode($localidade);
-$itens = $json->results->bindings;
-foreach ($itens as $r) {
-  $informacao[] = getGeoNames($r->title->value);
- 
-} 
-print_r($informacao); */
-
 $nameDiasease = $_POST['doenca'];
 $namePlace = $_POST['place'];
 if(isset($nameDiasease) && isset($namePlace)){
@@ -39,7 +21,7 @@ if(!empty($itens)){
     $diagnosticadosDisease[] = $r->diagnosticados->value;
     $valorDisease[] = intval($r->valor->value);
     $anoDisease[] = limpaURI($r->ano->value);
-    $doencaDisease[] = $r->title->value;
+    //$doencaDisease[] = $r->title->value;
   } 
 //print_r($doenca);
 $totalcuradosDisease = 0;
@@ -71,12 +53,18 @@ $totacasosDisease = $totaldiagnosticadosDisease + $totalcuradosDisease;
 	font-weight: bold;
 	color: #31708F;"
 }
-
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 #result{
-	margin-top: 10%;
+	margin-top: 35%;
 }
 </style>
- <div class="container">
+<html>
+<body>
+
     <div class="row" id="disease">
 
 		<div class='col-md-12' style="margin-top: 15px;">
@@ -86,8 +74,6 @@ $totacasosDisease = $totaldiagnosticadosDisease + $totalcuradosDisease;
 			  </div>
 			</div>
 		</div>
-
-		<div id="result"> </div>
 		<br>
 		<div class='col-md-6'>
 			<div class="panel-group">
@@ -141,7 +127,7 @@ $totacasosDisease = $totaldiagnosticadosDisease + $totalcuradosDisease;
 			</div>
 		</div>
 </div>
-</div>
+
 <script type="text/javascript">                                        
     var options = {
         responsive:true
@@ -234,6 +220,8 @@ var dataPie = [
 		</div>
 	</div>
 	</div>
+</html>
+</body>
 <?php
 }
 

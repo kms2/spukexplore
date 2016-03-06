@@ -1,3 +1,7 @@
+<?php
+
+require_once('lib.php');
+?>
 <!DOCTYPE html>
 <style>
 
@@ -11,7 +15,7 @@
     color:#fff;
 }
 .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
-    color: #ffffff;
+    color: #337ab7;
     background-color:#5C8EB9 ;
 }
 
@@ -23,6 +27,12 @@
     color:#ffffff;
 }
 
+#menu{
+   padding: 0 0 0 0 !important;
+    padding-left: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 </style>
 
 <html lang="en">
@@ -31,8 +41,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <script type='text/javascript' src="lib/Chart.min.js"></script>
-  <script type='text/javascript' src="lib/jquery-1.11.1.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type='text/javascript' src="graphics/script.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -47,8 +59,8 @@
       <a class="navbar-brand" href="#">SPUK</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="indicadores.php">Indicadores</a></li>
+      <li id="menu"><a href="index.php"><i class="fa fa-home"></i> HOME</a></li>
+      <li id="menu"><a href="indicadores.php"><i class="fa fa-bar-chart"></i> INDICADORES</a></li>
     </ul>
   </div>
 </div>
